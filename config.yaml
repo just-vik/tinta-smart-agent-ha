@@ -1,0 +1,21 @@
+# Home Assistant Add-on: Tinta Smart Device Agent
+# Установка: Настройки → Дополнения → Репозитории → добавить URL этого репозитория
+# затем установить "Tinta Smart Agent"
+
+name: Tinta Smart Agent
+description: Zero-Trust агент для платформы Tinta Smart (heartbeat, telemetry, tunnel status). Перед первым запуском выполните bootstrap через портал и укажите pairing code в настройках.
+version: "0.1.0"
+slug: tinta_smart_agent
+arch:
+  - amd64
+  - aarch64
+init: false
+boot: auto
+ports: {}
+ports_description: {}
+options:
+  api_base_url: "https://your-backend.tinta-smart.de"
+  pairing_code: ""
+schema:
+  api_base_url: "str"
+  pairing_code: "str"
