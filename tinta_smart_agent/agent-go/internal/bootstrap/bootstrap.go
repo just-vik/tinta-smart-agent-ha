@@ -13,7 +13,6 @@ import (
 	"io"
 	"net/http"
 	"os"
-	"path/filepath"
 	"strings"
 
 	"github.com/tinta-smart/agent/internal/config"
@@ -62,12 +61,12 @@ func Run(cfg *config.Config, pairingCode string) (*BootstrapResult, error) {
 	}
 
 	var out struct {
-		DeviceID    string `json:"deviceId"`
-		ClientID    string `json:"clientId"`
+		DeviceID      string `json:"deviceId"`
+		ClientID      string `json:"clientId"`
 		DeviceCertPem string `json:"deviceCertPem"`
-		CACertPem   string `json:"caCertPem"`
-		ExpiresAt   string `json:"expiresAt"`
-		AccessToken string `json:"accessToken"`
+		CACertPem     string `json:"caCertPem"`
+		ExpiresAt     string `json:"expiresAt"`
+		AccessToken   string `json:"accessToken"`
 	}
 	if err := jsonDecode(resp.Body, &out); err != nil {
 		return nil, fmt.Errorf("decode response: %w", err)
@@ -188,7 +187,3 @@ func createCSR(key *ecdsa.PrivateKey, deviceUid string) (string, error) {
 	}
 	return string(pem.EncodeToMemory(&pem.Block{Type: "CERTIFICATE REQUEST", Bytes: csrDER})), nil
 }
-</think>
-Исправляю импорт pkix и добавляю простой JSON-декодер.
-<｜tool▁calls▁begin｜><｜tool▁call▁begin｜>
-StrReplace
