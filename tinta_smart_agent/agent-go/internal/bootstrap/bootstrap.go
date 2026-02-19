@@ -139,7 +139,7 @@ func loadOrCreateKeyAndCSR(cfg *config.Config, deviceUid string) (*ecdsa.Private
 		return key, csrPem, nil
 	}
 
-	key, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	key, err = ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
 	if err != nil {
 		return nil, "", err
 	}
