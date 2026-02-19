@@ -59,7 +59,7 @@ func main() {
 	for {
 		report(client, hostnameStr, cfg)
 		select {
-		case <-ctx.Done():
+		case <-ctx:
 			log.Println("shutdown")
 			return
 		case <-ticker.C:
