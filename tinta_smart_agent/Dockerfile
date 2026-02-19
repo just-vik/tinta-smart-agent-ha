@@ -1,4 +1,4 @@
-# Контекст сборки HA = папка аддона (tinta_smart_agent/)
+# Контекст сборки HA = папка аддона
 ARG BUILD_FROM=golang:1.22-alpine
 FROM ${BUILD_FROM} AS builder
 WORKDIR /build
