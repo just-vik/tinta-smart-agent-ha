@@ -1,6 +1,6 @@
 # Контекст сборки HA = папка аддона
-ARG BUILD_FROM=golang:1.22-alpine
-FROM ${BUILD_FROM} AS builder
+# Builder — явно golang (HA передаёт BUILD_FROM=amd64-base, в котором нет Go).
+FROM golang:1.22-alpine AS builder
 WORKDIR /build
 COPY agent-go/go.mod ./
 RUN go mod tidy 2>/dev/null || true
