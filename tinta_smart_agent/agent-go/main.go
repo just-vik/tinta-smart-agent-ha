@@ -3,8 +3,8 @@
 package main
 
 import (
+	"bytes"
 	"flag"
-	"fmt"
 	"log"
 	"os"
 	"os/signal"
