@@ -4,6 +4,8 @@ FROM golang:1.22-alpine AS builder
 WORKDIR /build
 COPY agent-go/go.mod ./
 RUN go mod tidy 2>/dev/null || true
+# Сброс кэша: после исправления bootstrap.go (удалить строку ниже после успешной сборки)
+RUN echo "cachebust-bootstrap-fix-20260219"
 COPY agent-go/ ./
 RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o /tinta-agent .
 
