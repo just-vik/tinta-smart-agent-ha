@@ -1,5 +1,5 @@
-// Tinta Smart Device Agent — работает на клиентском HA mini-PC (HAOS Add-on или Docker).
-// Протокол: pairing code → bootstrap (CSR → cert + device JWT) → heartbeat, telemetry, tunnel-status.
+// Tinta Smart Device Agent - runs on client HA mini-PC (HAOS Add-on or Docker).
+// Protocol: pairing code -> bootstrap (CSR -> cert + device JWT) -> heartbeat, telemetry, tunnel-status.
 package main
 
 import (
@@ -40,13 +40,13 @@ func main() {
 		return
 	}
 
-	// Проверяем, что уже есть токен (уже зарегистрированы)
+	// Check that we have a token (already registered)
 	client, err := api.NewFromEnv(cfg.APIBaseURL, cfg.TokenPath())
 	if err != nil {
 		log.Fatalf("No token found. Run with -bootstrap and TINTA_PAIRING_CODE=12345678 first: %v", err)
 	}
 
-	// Читаем hostname для tunnel-status
+	// Read hostname for tunnel-status
 	hostname, _ := os.ReadFile(cfg.HostnamePath())
 	hostnameStr := string(bytes.TrimSpace(hostname))
 
@@ -72,7 +72,6 @@ func report(c *api.Client, hostname string, cfg *config.Config) {
 		log.Printf("heartbeat: %v", err)
 	}
 	status := "unknown"
-	// Можно определять по процессу cloudflared или просто "online" если агент жив
 	status = "online"
 	if err := c.TunnelStatus(&api.TunnelStatusPayload{
 		Hostname: &hostname,
@@ -97,7 +96,3 @@ func signalContext() <-chan struct{} {
 	}()
 	return done
 }
-</think>
-Исправляю main.go: добавляю импорт `bytes` и убираю дублирование.
-<｜tool▁calls▁begin｜><｜tool▁call▁begin｜>
-StrReplace
